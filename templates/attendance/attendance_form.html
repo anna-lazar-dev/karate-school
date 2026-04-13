@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Посещаемость | Hajime Dojo{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-eyebrow">Attendance</div>
+    <h2>Журнал посещаемости</h2>
+    <p>
+        Выберите дату тренировки и отметьте учеников, которые присутствовали на занятии.
+    </p>
+</section>
+
+<section class="card">
+    <div class="section-title">
+        <h3>Отметка присутствия</h3>
+    </div>
+
+    <form method="post" class="form-stack">
+        {% csrf_token %}
+
+        <div class="form-row">
+            {{ form.as_p }}
+        </div>
+
+        {% if students %}
+            <div class="table-wrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Ученик</th>
+                            <th>Пояс</th>
+                            <th>Весовая категория</th>
+                            <th>Присутствовал</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in students %}
+                        <tr>
+                            <td>{{ student.user.username }}</td>
+                            <td>{{ student.belt|default:"—" }}</td>
+                            <td>{{ student.weight_category|default:"—" }}</td>
+                            <td>
+                                <input type="checkbox" name="student_{{ student.id }}">
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Сохранить посещаемость</button>
+        {% else %}
+            <div class="empty-state">
+                У вас пока нет учеников, которых можно отметить в журнале.
+            </div>
+        {% endif %}
+    </form>
+</section>
+{% endblock %}

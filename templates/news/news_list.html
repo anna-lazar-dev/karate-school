@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Новости | Hajime Dojo{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-eyebrow">News</div>
+    <h2>Новости школы</h2>
+    <p>
+        Здесь публикуются объявления, события, новости соревнований и важная информация для учеников и родителей.
+    </p>
+</section>
+
+<section class="card">
+    <div class="section-title">
+        <h3>Последние публикации</h3>
+    </div>
+
+    {% if news_list %}
+        <div class="news-grid">
+            {% for item in news_list %}
+                <article class="news-card">
+                    {% if item.image %}
+                        <div class="news-image-wrap">
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}" class="news-image">
+                        </div>
+                    {% endif %}
+
+                    <div class="news-content">
+                        <span class="news-badge">{{ item.published_at|date:"d.m.Y H:i" }}</span>
+
+                        <h3 class="news-title">
+                            <a href="{% url 'news:detail' item.pk %}">{{ item.title }}</a>
+                        </h3>
+
+                        <p class="news-excerpt">
+                            {{ item.content|truncatechars:180 }}
+                        </p>
+
+                        <div class="news-actions">
+                            <a href="{% url 'news:detail' item.pk %}" class="btn btn-primary">Читать</a>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            Пока новостей нет.
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ news_item.title }} | Hajime Dojo{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-eyebrow">News</div>
+    <h2>{{ news_item.title }}</h2>
+    <p>Опубликовано: {{ news_item.published_at|date:"d.m.Y H:i" }}</p>
+</section>
+
+<section class="card">
+    {% if news_item.image %}
+        <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}" class="news-detail-image">
+    {% endif %}
+
+    <div class="news-detail-content">
+        <p>{{ news_item.content|linebreaks }}</p>
+    </div>
+
+    <a href="{% url 'news:list' %}" class="btn btn-primary">← Назад к новостям</a>
+</section>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Вход | Hajime Dojo{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-eyebrow">Welcome</div>
+    <h2>Вход в систему</h2>
+    <p>
+        Войдите, чтобы открыть личный кабинет ученика, тренера или администратора.
+    </p>
+</section>
+
+<section class="card auth-card">
+    <div class="section-title">
+        <h3>Авторизация</h3>
+    </div>
+
+    <form method="post" class="form-stack">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Войти</button>
+    </form>
+</section>
+{% endblock %}

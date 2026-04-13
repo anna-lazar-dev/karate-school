@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block title %}Личный кабинет ученика | Hajime Dojo{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <span class="hero-eyebrow">Student Dashboard</span>
+    <h2>Личный кабинет ученика</h2>
+    <p>Ваш профиль, спортивные данные и история посещаемости тренировок.</p>
+</section>
+
+<section class="section">
+    <div class="card">
+        <h3 class="block-title">Основная информация</h3>
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="info-label">Пользователь</span>
+                <div class="info-value">{{ user.username }}</div>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Роль</span>
+                <div class="info-value">{{ user.get_role_display }}</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="card">
+        <h3 class="block-title">Информация об ученике</h3>
+
+        {% if student %}
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Дата рождения</span>
+                    <div class="info-value">{{ student.birth_date }}</div>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Пояс</span>
+                    <div class="info-value">{{ student.belt|default:"—" }}</div>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Весовая категория</span>
+                    <div class="info-value">{{ student.weight_category|default:"—" }}</div>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Спортивная категория</span>
+                    <div class="info-value">{{ student.sport_category|default:"—" }}</div>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Соревнования</span>
+                    <div class="info-value">{{ student.competitions_count }}</div>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Победы</span>
+                    <div class="info-value">{{ student.wins_count }}</div>
+                </div>
+            </div>
+        {% else %}
+            <p class="empty-state">Профиль ученика пока не заполнен.</p>
+        {% endif %}
+    </div>
+</section>
+
+<section class="section">
+    <div class="card">
+        <h3 class="block-title">Статистика посещаемости</h3>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Всего тренировок</span>
+                <div class="stat-value">{{ total|default:0 }}</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Посещено</span>
+                <div class="stat-value">{{ present|default:0 }}</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Пропущено</span>
+                <div class="stat-value">{{ absent|default:0 }}</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Процент</span>
+                <div class="stat-value">{{ percent|default:0 }}%</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="card">
+        <h3 class="block-title">История посещаемости</h3>
+
+        {% if attendance %}
+            <div class="table-wrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in attendance %}
+                        <tr>
+                            <td>{{ record.training.date }}</td>
+                            <td>
+                                {% if record.is_present %}
+                                    <span class="badge badge-success">Был на тренировке</span>
+                                {% else %}
+                                    <span class="badge badge-danger">Отсутствовал</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="empty-state">Пока нет данных о посещаемости.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

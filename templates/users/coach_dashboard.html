@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Кабинет тренера | Hajime Dojo{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <span class="hero-eyebrow">Coach Dashboard</span>
+    <h2>Кабинет тренера</h2>
+    <p>Управление своими учениками и контроль посещаемости тренировок.</p>
+</section>
+
+<section class="section">
+    <div class="card">
+        <h3 class="block-title">Быстрые действия</h3>
+        <div class="actions-row">
+            <a href="{% url 'attendance:attendance_create' %}" class="btn btn-primary">Отметить посещаемость</a>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="card">
+        <h3 class="block-title">Мои ученики</h3>
+
+        {% if students %}
+            <div class="table-wrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Имя</th>
+                            <th>Пояс</th>
+                            <th>Вес</th>
+                            <th>Категория</th>
+                            <th>Победы</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in students %}
+                        <tr>
+                            <td>{{ student.user.username }}</td>
+                            <td>{{ student.belt|default:"—" }}</td>
+                            <td>{{ student.weight_category|default:"—" }}</td>
+                            <td>{{ student.sport_category|default:"—" }}</td>
+                            <td>{{ student.wins_count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="empty-state">У вас пока нет привязанных учеников.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

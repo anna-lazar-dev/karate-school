@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Сохранено | Hajime Dojo{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-eyebrow">Attendance Saved</div>
+    <h2>Посещаемость сохранена</h2>
+    <p>
+        Отметки по тренировке успешно записаны в систему.
+    </p>
+</section>
+
+<section class="card">
+    <div class="section-title">
+        <h3>Что дальше</h3>
+    </div>
+
+    <p class="card-subtitle">
+        Можно сразу перейти к следующей тренировке или вернуться в кабинет тренера.
+    </p>
+
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="{% url 'attendance:attendance_create' %}" class="btn btn-primary">Отметить следующую тренировку</a>
+        <a href="{% url 'users:coach_dashboard' %}" class="btn btn-secondary" style="color: #111; border-color: #d1d5db;">Вернуться в кабинет</a>
+    </div>
+</section>
+{% endblock %}

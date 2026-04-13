@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная | Hajime Dojo{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-eyebrow">Hajime Dojo</div>
+    <h2>Добро пожаловать в школу карате</h2>
+    <p>
+        Тренируйся, развивай дисциплину, силу и дух.
+        Личный кабинет, журнал тренировок и вся информация — в одном месте.
+    </p>
+
+    <div class="hero-actions">
+        {% if user.is_authenticated %}
+            <a href="{% url 'dashboard' %}" class="btn btn-primary">Перейти в кабинет</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary">Войти</a>
+        {% endif %}
+        <a href="{% url 'news:list' %}" class="btn btn-outline">Новости</a>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="card">
+    <div class="section-title">
+        <h3>О школе</h3>
+    </div>
+
+    <p class="muted">
+        Hajime Dojo — это пространство для развития тела и духа.
+        Мы обучаем карате детей и взрослых, готовим к соревнованиям и воспитываем характер.
+    </p>
+</section>
+
+
+
+
+{% endblock %}
