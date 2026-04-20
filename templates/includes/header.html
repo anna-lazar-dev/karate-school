@@ -29,6 +29,11 @@
                        class="{% if request.resolver_match.url_name == 'attendance_create' or request.resolver_match.url_name == 'attendance_success' %}active{% endif %}">
                         Посещаемость
                     </a>
+
+                    <a href="{% url 'payments:list' %}"
+       class="{% if request.resolver_match.namespace == 'payments' %}active{% endif %}">
+        Оплата
+    </a>
                 {% endif %}
 
                 {% if user.is_staff %}

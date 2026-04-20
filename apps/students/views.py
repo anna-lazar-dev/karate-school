@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 
 from apps.attendance.models import AttendanceRecord
+from apps.payments.models import PaymentStatus
 
 
 @login_required
@@ -19,6 +20,7 @@ def student_dashboard(request):
     present = 0
     absent = 0
     percent = 0
+    payment_status = None
 
     if student_profile:
         attendance = AttendanceRecord.objects.filter(
@@ -32,6 +34,8 @@ def student_dashboard(request):
         if total > 0:
             percent = round((present / total) * 100)
 
+        payment_status = PaymentStatus.objects.filter(student=student_profile).first()
+
     context = {
         'user': user,
         'student': student_profile,
@@ -40,6 +44,7 @@ def student_dashboard(request):
         'present': present,
         'absent': absent,
         'percent': percent,
+        'payment_status': payment_status,
     }
 
     return render(request, 'students/dashboard.html', context)

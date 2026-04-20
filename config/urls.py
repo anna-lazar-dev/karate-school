@@ -34,6 +34,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('', include('apps.attendance.urls')),
     path('', include('apps.news.urls')),
+    path('', include('apps.payments.urls')),
+    path('', include('apps.payments.urls'))
 ]
 
 if settings.DEBUG:

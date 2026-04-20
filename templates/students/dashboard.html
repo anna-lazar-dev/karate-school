@@ -62,6 +62,32 @@
     </div>
 </section>
 
+<section class="card">
+    <div class="section-title">
+        <h3>Статус оплаты</h3>
+    </div>
+
+    <div class="payment-card">
+        {% if payment_status %}
+            <div class="payment-status {% if payment_status.is_paid %}paid{% else %}unpaid{% endif %}">
+                {% if payment_status.is_paid %}
+                    ✅ Оплачено
+                {% else %}
+                    ❌ Не оплачено
+                {% endif %}
+            </div>
+
+            {% if payment_status.comment %}
+                <p class="muted" style="margin-top: 12px;">{{ payment_status.comment }}</p>
+            {% endif %}
+        {% else %}
+            <div class="payment-status unpaid">
+                ❌ Не оплачено
+            </div>
+        {% endif %}
+    </div>
+</section>
+
 <section class="section">
     <div class="card">
         <h3 class="block-title">Статистика посещаемости</h3>

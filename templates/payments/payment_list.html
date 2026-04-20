@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Оплата | Hajime Dojo{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-eyebrow">Payments</div>
+    <h2>Статус оплаты учеников</h2>
+    <p>Здесь можно отметить, оплачены ли занятия у ваших учеников.</p>
+</section>
+
+<section class="card">
+    <div class="section-title">
+        <h3>Оплата учеников</h3>
+    </div>
+
+    {% if students %}
+        <div class="table-wrap">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Ученик</th>
+                        <th>Статус</th>
+                        <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.user.username }}</td>
+                        <td>
+                            {% if student.payment_status and student.payment_status.is_paid %}
+                                <span class="badge badge-success">Оплачено</span>
+                            {% else %}
+                                <span class="badge badge-danger">Не оплачено</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'payments:toggle' student.id %}" class="btn btn-primary">
+                                Изменить статус
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="empty-state">
+            У вас пока нет учеников.
+        </div>
+    {% endif %}
+</section>
+{% endblock %}
