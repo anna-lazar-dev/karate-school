@@ -68,22 +68,18 @@
     </div>
 
     <div class="payment-card">
-        {% if payment_status %}
-            <div class="payment-status {% if payment_status.is_paid %}paid{% else %}unpaid{% endif %}">
-                {% if payment_status.is_paid %}
-                    ✅ Оплачено
-                {% else %}
-                    ❌ Не оплачено
-                {% endif %}
+        {% if payment_status and payment_status.is_paid %}
+            <div class="payment-status paid">
+                ✅ Оплачено до {{ payment_status.paid_until|date:"d.m.Y" }}
             </div>
-
-            {% if payment_status.comment %}
-                <p class="muted" style="margin-top: 12px;">{{ payment_status.comment }}</p>
-            {% endif %}
         {% else %}
             <div class="payment-status unpaid">
                 ❌ Не оплачено
             </div>
+        {% endif %}
+
+        {% if payment_status and payment_status.comment %}
+            <p class="muted" style="margin-top: 12px;">{{ payment_status.comment }}</p>
         {% endif %}
     </div>
 </section>

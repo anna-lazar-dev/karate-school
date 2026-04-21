@@ -29,15 +29,17 @@
                     <tr>
                         <td>{{ student.user.username }}</td>
                         <td>
-                            {% if student.payment_status and student.payment_status.is_paid %}
-                                <span class="badge badge-success">Оплачено</span>
-                            {% else %}
-                                <span class="badge badge-danger">Не оплачено</span>
-                            {% endif %}
-                        </td>
+    {% if student.payment_status and student.payment_status.is_paid %}
+        <span class="badge badge-success">
+            Оплачено до {{ student.payment_status.paid_until|date:"d.m.Y" }}
+        </span>
+    {% else %}
+        <span class="badge badge-danger">Не оплачено</span>
+    {% endif %}
+</td>
                         <td>
-                            <a href="{% url 'payments:toggle' student.id %}" class="btn btn-primary">
-                                Изменить статус
+                            <a href="{% url 'payments:edit' student.id %}" class="btn btn-primary">
+                               Указать дату
                             </a>
                         </td>
                     </tr>

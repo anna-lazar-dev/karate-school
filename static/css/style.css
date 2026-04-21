@@ -1182,3 +1182,61 @@ input[type="checkbox"] {
         font-size: 24px;
     }
 }
+
+/* attendance desktop/mobile switch */
+.mobile-attendance {
+    display: none !important;
+}
+
+.table-wrap {
+    display: block !important;
+}
+
+@media (max-width: 640px) {
+    .table-wrap {
+        display: none !important;
+    }
+
+    .mobile-attendance {
+        display: flex !important;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    .mobile-attendance-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: #fff;
+        border: 1px solid var(--border);
+        cursor: pointer;
+    }
+
+    .mobile-attendance-item input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        margin: 0;
+    }
+
+    .mobile-attendance-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobile-name {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 1.2;
+    }
+
+    .mobile-meta {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 4px;
+        line-height: 1.4;
+    }
+}

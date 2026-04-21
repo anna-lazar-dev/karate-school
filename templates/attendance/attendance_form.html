@@ -49,6 +49,21 @@
                 </table>
             </div>
 
+            <div class="mobile-attendance">
+                {% for student in students %}
+                    <label class="mobile-attendance-item">
+                        <input type="checkbox" name="student_{{ student.id }}">
+
+                        <div class="mobile-attendance-info">
+                            <div class="mobile-name">{{ student.user.username }}</div>
+                            <div class="mobile-meta">
+                                Пояс: {{ student.belt|default:"—" }} • Вес: {{ student.weight_category|default:"—" }}
+                            </div>
+                        </div>
+                    </label>
+                {% endfor %}
+            </div>
+
             <button type="submit" class="btn btn-primary">Сохранить посещаемость</button>
         {% else %}
             <div class="empty-state">

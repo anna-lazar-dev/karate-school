@@ -4,6 +4,5 @@ from apps.payments.models import PaymentStatus
 
 @admin.register(PaymentStatus)
 class PaymentStatusAdmin(admin.ModelAdmin):
-    list_display = ('id', 'student', 'is_paid', 'updated_at')
-    list_filter = ('is_paid',)
+    list_display = ('id', 'student', 'paid_until', 'updated_at')
     search_fields = ('student__user__username',)

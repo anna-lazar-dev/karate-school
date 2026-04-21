@@ -1,9 +1,9 @@
 from django.urls import path
-from apps.payments.views import payment_list_view, payment_toggle_view
+from apps.payments.views import payment_list_view, payment_edit_view
 
 app_name = 'payments'
 
 urlpatterns = [
     path('payments/', payment_list_view, name='list'),
-    path('payments/toggle/<int:student_id>/', payment_toggle_view, name='toggle'),
+    path('payments/edit/<int:student_id>/', payment_edit_view, name='edit'),
 ]

@@ -47,7 +47,7 @@ karate_school/
 │   └── payments/
 ├── static/
 ├── templates/
-└── media/
+└── media/```
 
 
 
@@ -128,19 +128,3 @@ GitHub: [anna-lazar-dev](https://github.com/anna-lazar-dev)
 
 ---
 
-## 🛠️ Технологии
-
-- Python + Django
-- HTML5 / CSS3
-- SQLite (планируется PostgreSQL)
-
----
-
-## 📦 Как запустить локально
-
-```bash
-git clone https://github.com/anna-lazar-dev/karate-school.git
-cd karate-school
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver

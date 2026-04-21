@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from apps.students.models import StudentProfile
 
 
@@ -9,7 +10,11 @@ class PaymentStatus(models.Model):
         related_name='payment_status',
         verbose_name='Ученик'
     )
-    is_paid = models.BooleanField(default=False, verbose_name='Оплачено')
+    paid_until = models.DateField(
+        blank=True,
+        null=True,
+        verbose_name='Оплачено до'
+    )
     comment = models.CharField(
         max_length=255,
         blank=True,
@@ -22,4 +27,10 @@ class PaymentStatus(models.Model):
         verbose_name_plural = 'Статусы оплаты'
 
     def __str__(self):
-        return f'{self.student.user.username} - {"Оплачено" if self.is_paid else "Не оплачено"}'
+        return f'{self.student.user.username}'
+
+    @property
+    def is_paid(self):
+        if self.paid_until:
+            return self.paid_until >= timezone.localdate()
+        return False

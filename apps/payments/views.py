@@ -4,6 +4,7 @@ from django.http import HttpResponseForbidden
 
 from apps.students.models import StudentProfile
 from apps.payments.models import PaymentStatus
+from apps.payments.forms import PaymentStatusForm
 
 
 @login_required
@@ -20,14 +21,24 @@ def payment_list_view(request):
 
 
 @login_required
-def payment_toggle_view(request, student_id):
+def payment_edit_view(request, student_id):
     if request.user.role != 'coach':
         return HttpResponseForbidden("Нет доступа")
 
     student = get_object_or_404(StudentProfile, id=student_id, coach=request.user)
     payment_status, created = PaymentStatus.objects.get_or_create(student=student)
 
-    payment_status.is_paid = not payment_status.is_paid
-    payment_status.save()
+    if request.method == 'POST':
+        form = PaymentStatusForm(request.POST, instance=payment_status)
+        if form.is_valid():
+            form.save()
+            return redirect('payments:list')
+    else:
+        form = PaymentStatusForm(instance=payment_status)
 
-    return redirect('payments:list')
+    context = {
+        'student': student,
+        'form': form,
+        'payment_status': payment_status,
+    }
+    return render(request, 'payments/payment_edit.html', context)
