@@ -892,3 +892,293 @@ input[type="checkbox"] {
     color: #d62828;
 }
 }
+
+/* =========================
+   MOBILE IMPROVEMENTS
+========================= */
+
+@media (max-width: 900px) {
+    .header-inner {
+        min-height: auto;
+        padding: 14px 0 18px;
+        align-items: flex-start;
+    }
+
+    .brand {
+        width: 100%;
+    }
+
+    .main-nav {
+        width: 100%;
+        order: 3;
+        gap: 18px;
+        justify-content: flex-start;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .user-pill {
+        max-width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .hero {
+        padding: 28px 22px;
+        border-radius: 22px;
+    }
+
+    .hero h1,
+    .hero h2 {
+        font-size: 32px;
+        line-height: 1.1;
+    }
+
+    .card {
+        padding: 22px;
+        border-radius: 20px;
+    }
+
+    .news-card {
+        grid-template-columns: 1fr;
+    }
+
+    .news-image {
+        height: 220px;
+    }
+
+    .info-grid,
+    .stats-grid,
+    .grid-4 {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        width: min(100% - 18px, 1180px);
+    }
+
+    .page,
+    .page-shell {
+        padding: 20px 0 36px;
+    }
+
+    .site-header {
+        position: static;
+    }
+
+    .header-inner {
+        gap: 14px;
+    }
+
+    .brand {
+        gap: 10px;
+    }
+
+    .brand-logo {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        max-width: 40px;
+        min-height: 40px;
+        max-height: 40px;
+    }
+
+    .brand-text {
+        font-size: 18px;
+    }
+
+    .main-nav {
+        gap: 14px;
+    }
+
+    .main-nav a {
+        font-size: 14px;
+    }
+
+    .header-actions {
+        gap: 10px;
+    }
+
+    .user-pill {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+
+    .btn {
+        min-height: 42px;
+        padding: 0 16px;
+        font-size: 14px;
+    }
+
+    .hero {
+        padding: 24px 18px;
+        border-radius: 20px;
+    }
+
+    .hero::before {
+        width: 180px;
+        height: 180px;
+        right: -40px;
+        top: -50px;
+    }
+
+    .hero::after {
+        width: 120px;
+        height: 120px;
+        right: 60px;
+        bottom: -50px;
+    }
+
+    .hero-eyebrow {
+        font-size: 11px;
+        padding: 7px 10px;
+    }
+
+    .hero h1,
+    .hero h2 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .hero p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .card {
+        padding: 18px;
+        border-radius: 18px;
+        margin-bottom: 16px;
+    }
+
+    .section-title {
+        font-size: 18px;
+        margin-bottom: 14px;
+    }
+
+    .section-title::before {
+        height: 20px;
+    }
+
+    .info-grid,
+    .stats-grid,
+    .grid-4 {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .info-item {
+        padding: 14px 16px;
+    }
+
+    .info-label {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+
+    .info-value {
+        font-size: 16px;
+    }
+
+    .info-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 10px 0;
+    }
+
+    .stat-card,
+    .stat-box {
+        padding: 16px;
+    }
+
+    .stat-label {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    .stat-value {
+        font-size: 28px;
+    }
+
+    .table {
+        min-width: 560px;
+    }
+
+    .table th,
+    .table td {
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+
+    .news-title {
+        font-size: 22px;
+    }
+
+    .news-image {
+        height: 190px;
+    }
+
+    .news-detail-image {
+        max-height: 260px;
+        border-radius: 14px;
+    }
+
+    .payment-status {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer-inner {
+        min-height: 72px;
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 420px) {
+    .brand-text {
+        font-size: 17px;
+    }
+
+    .hero h1,
+    .hero h2 {
+        font-size: 24px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .main-nav {
+        gap: 10px;
+    }
+
+    .main-nav a {
+        font-size: 13px;
+    }
+
+    .user-pill {
+        font-size: 12px;
+    }
+
+    .section-title {
+        font-size: 17px;
+    }
+
+    .stat-value {
+        font-size: 24px;
+    }
+}
