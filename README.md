@@ -47,7 +47,8 @@ karate_school/
 │   └── payments/
 ├── static/
 ├── templates/
-└── media/```
+└── media/
+
 
 
 
